@@ -1,10 +1,13 @@
 const express = require("express");
 const { createProxyMiddleware } = require("http-proxy-middleware");
+const cors = require("cors");
 const app = express();
+const port = 3005;
+
+app.use(cors());
 
 // Replace this with the target server Url can be backpack or binance
 const targetUrl = 'https://api.backpack.exchange';
-
 
 // Handling the CORS 
 app.use((req, res, next) => {
@@ -27,7 +30,6 @@ app.use('/', createProxyMiddleware({
     }
 }));
 
-const port = 3005;
 app.listen(port, () => {
     console.log(`Proxy server running on http://localhost:${port}`);
 })
