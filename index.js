@@ -12,7 +12,7 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Method', 'GET, POST, PUT, DELETE, OPTIONS');
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     res.header('Access-Control-Allow-Credentials', 'true');
-    res.header('Acess-Control-Allow-Expose-Header', 'Content-length, Content-Range');
+    res.header('Access-Control-Allow-Expose-Header', 'Content-length, Content-Range');
     next();
 });
 
