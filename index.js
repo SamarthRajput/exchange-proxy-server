@@ -5,11 +5,8 @@ const cors = require("cors");
 const app = express();
 const port = 3005;
 
-app.use(cors({
-    origin: true,
-    credentials: true
-}));
-
+app.use(cors());
+app.options("*", cors());
 
 // Replace this with the target server Url can be backpack or binance
 const targetUrl = 'https://api.backpack.exchange';
