@@ -1,10 +1,15 @@
 const express = require("express");
 const { createProxyMiddleware } = require("http-proxy-middleware");
+const serverless = require("serverless-http");
 const cors = require("cors");
 const app = express();
 const port = 3005;
 
-app.use(cors());
+app.use(cors({
+    origin: true,
+    credentials: true
+}));
+
 
 // Replace this with the target server Url can be backpack or binance
 const targetUrl = 'https://api.backpack.exchange';
@@ -30,6 +35,9 @@ app.use('/', createProxyMiddleware({
     }
 }));
 
-app.listen(port, () => {
-    console.log(`Proxy server running on http://localhost:${port}`);
-})
+// app.listen(port, () => {
+//     console.log(`Proxy server running on http://localhost:${port}`);
+// })
+
+module.exports = app;
+module.exports.handler = serverless(app);
