@@ -16,7 +16,7 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Method', 'GET, POST, PUT, DELETE, OPTIONS');
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    res.header('Access-Control-Allow-Credentials', 'true');
+    // res.header('Access-Control-Allow-Credentials', 'true');
     res.header('Access-Control-Allow-Expose-Header', 'Content-length, Content-Range');
     next();
 });
@@ -26,6 +26,7 @@ app.use('/', createProxyMiddleware({
     changeOrigin: true,
     onProxyReq: (proxyReq, req, res) => {
         // Optionally, we can modify the request here
+        proxyReq.removeHeader("origin");
     },
     onProxyRes: (proxyRes, req, res) => {
         // Optionally, we can modify the response here
